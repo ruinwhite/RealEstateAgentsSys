@@ -1,0 +1,85 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "首页"
+			}
+		}
+		,{
+		    "path" : "pages/must-read/must-read",
+		    "style" : {
+				"navigationBarTitleText": "买房必读"
+			}
+		}
+		,{
+		    "path" : "pages/house-tools/house-tools",
+		    "style" : {
+				"navigationBarTitleText": "买房工具"
+			}
+		}
+		,{
+		    "path" : "pages/my-space/my-space",
+		    "style" : {
+				"navigationBarTitleText": "我的信息"
+			}
+		}
+	    ,{
+            "path" : "pages/article-info/article-info",
+            "style" : {
+				"navigationBarTitleText": "文章详情"
+			}
+        }
+        ,{
+            "path" : "pages/article-list/article-list",
+            "style" : {
+            	"navigationBarTitleText": "文章列表"
+            }
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "购房助手",
+		"navigationBarBackgroundColor": "#444444",
+		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+		"color": "#7A7E83",
+		"selectedColor": "#007AFF",
+		"borderStyle": "black",
+		"backgroundColor": "#F8F8F8",
+		"position": "bottom",
+		"list": [{
+				"pagePath": "pages/index/index",
+				"iconPath": "static/013-starpentagon(2).png",
+				"selectedIconPath": "static/013-starpentagon.png", 
+				"text": "热卖专题"
+			},{
+				"pagePath": "pages/must-read/must-read",
+				"iconPath": "static/065-spellbook(2).png",
+				"selectedIconPath": "static/065-spellbook.png",
+				"text": "买房必读"
+			},{
+				"pagePath": "pages/house-tools/house-tools",
+				"iconPath": "static/038-cauldron(2).png",
+				"selectedIconPath": "static/038-cauldron.png",
+				"text": "买房工具"
+			},{
+				"pagePath": "pages/my-space/my-space",
+				"iconPath": "static/064-spellbook(2).png",
+				"selectedIconPath": "static/064-spellbook.png", 
+				"text": "我的信息"
+			}
+		]
+	}
+	// //方便开发使用
+	// ,"condition": { //模式配置，仅开发期间生效
+	//     "current": 0, //当前激活的模式（list 的索引项）
+	//     "list": [{
+	//             "name": "info", //模式名称
+	//             "path": "pages/info/info", //启动页面，必选
+	//             "query": "newsid=5238220" //启动参数，在页面的onLoad函数里面得到。
+	//         }
+	//     ]
+	// }
+}
