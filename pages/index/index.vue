@@ -2,7 +2,7 @@
 	<view class="content">
 		<uni-nav-bar>
 			<view>
-				<input class="searchInput" type="text" confirm-type="search" v-model="searchInputText" placeholder="找新房 找别墅 找商铺 找二手房" @focus="clearSearchInput"/>
+				<input class="searchInput" type="text" confirm-type="search" v-model="searchInputText" placeholder="找新房 找别墅 找商铺 找二手房" />
 			</view>
 			<view slot="right">
 				<view @tap="checkin">签到</view>
@@ -58,6 +58,8 @@
 
 <style>
 	.searchInput{
-		
+		border: 1px #4CD964 solid;
+		border-radius: 10px;
+		width: 480rpx;
 	}
 </style>
