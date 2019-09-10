@@ -59,7 +59,7 @@
 <style>
 	.searchInput{
 		border: 1px #4CD964 solid;
-		border-radius: 10px;
+		border-radius: 5px;
 		width: 480rpx;
 	}
 </style>
