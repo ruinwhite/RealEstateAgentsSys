@@ -5,3 +5,8 @@
 	width: 480rpx;
 }
 
+/* 精品别墅card 内部样式*/
+.uni-media-list-body{height: auto;}
+.uni-media-list-text-top{line-height: 1.6em;}
+
+

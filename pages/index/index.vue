@@ -8,92 +8,100 @@
 				<view @tap="checkin">签到</view>
 			</view>
 		</uni-nav-bar>
-		<uni-card is-full="true" title="DCloud" thumbnail="https://img-cdn-qiniu.dcloud.net.cn/new-page/uni.png" extra="2018.12.12" >
+		
+		<uni-card is-full="false" title="别墅精选" thumbnail="/static/index/house.png" note="tips" is-shadow="true">
 		    <view class="uni-list">
-		    	<view class="uni-list-cell" hover-class="uni-list-cell-hover" v-for="(item,index) in news" :key="index" @tap="openinfo" :data-newsid="item.post_id">
+		    	<view class="uni-list-cell" hover-class="uni-list-cell-hover" v-for="(item,index) in villaList" v-if="index<5" :key="index" @tap="openinfo" :data-newsid="item.post_id">
 		    		<view class="uni-media-list">
 		    			<image class="uni-media-list-logo" :src="item.author_avatar"></image>
 		    			<view class="uni-media-list-body">
-		    				<!-- <view class="uni-media-list-text-top">{{item.title}}</view> -->
-		    				<!-- <view class="uni-media-list-text-bottom uni-ellipsis">{{item.created_at}}</view> -->
-							<view class="uni-media-list-text-top">123456</view>
-							<view class="uni-media-list-text-bottom uni-ellipsis">123</view> 
+		    				<view class="uni-media-list-text-top">{{item.title}}</view>
+		    				<view class="uni-media-list-text-bottom uni-ellipsis">{{item.created_at}}</view>
 		    			</view>
 		    		</view>
 		    	</view>
 		    </view>
+			<template v-slot:footer>
+				<navigator hover-class="navigator-hover" url="/pages/article-list/article-list?type=villaList">
+					<button type="default">查看全部</button>
+				</navigator>
+			</template>
 		</uni-card>
-		<uni-card
-		    title="标题文字"
-		    mode="style"
-		    :is-shadow="true"
-		    thumbnail="https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/cbd.jpg"
-		    extra="Dcloud 2019-05-20 12:32:19"
-		    note="Tips"
-		>
-		        那是一个秋意盎然、金风送爽的日子，我和父母一起来到了位于上师大旁的康健园。一踏进公园，一股浓郁的桂香扑鼻而来，泌人心脾,让我心旷神怡，只见一朵朵开得正烈的金色桂花，迎风而立，仿佛在向我招手。我们追着这桂香，走进了清幽的公园。
+		
+		<uni-card is-full="false" title="精品公寓" thumbnail="/static/index/apartmanlife.png" note="tips" is-shadow="true">
+		    <view class="uni-list">
+		    	<view class="uni-list-cell" hover-class="uni-list-cell-hover" v-for="(item,index) in apartmentList" v-if="index<5" :key="index" @tap="openinfo" :data-newsid="item.post_id">
+		    		<view class="uni-media-list">
+		    			<image class="uni-media-list-logo" :src="item.author_avatar"></image>
+		    			<view class="uni-media-list-body">
+		    				<view class="uni-media-list-text-top">{{item.title}}</view>
+		    				<view class="uni-media-list-text-bottom uni-ellipsis">{{item.created_at}}</view>
+		    			</view>
+		    		</view>
+		    	</view>
+		    </view>
+			<template v-slot:footer>
+				<navigator hover-class="navigator-hover" url="/pages/article-list/article-list?type=apartmentList">
+					<button type="default">查看全部</button>
+				</navigator>
+			</template>
 		</uni-card>
-
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
-		<view @tap="openlist">文章列表</view>
+		<uni-card is-full="false" title="优选住宅" thumbnail="/static/index/park.png" note="tips" is-shadow="true">
+		    <view class="uni-list">
+		    	<view class="uni-list-cell" hover-class="uni-list-cell-hover" v-for="(item,index) in residenceList" v-if="index<5" :key="index" @tap="openinfo" :data-newsid="item.post_id">
+		    		<view class="uni-media-list">
+		    			<image class="uni-media-list-logo" :src="item.author_avatar"></image>
+		    			<view class="uni-media-list-body">
+		    				<view class="uni-media-list-text-top">{{item.title}}</view>
+		    				<view class="uni-media-list-text-bottom uni-ellipsis">{{item.created_at}}</view>
+		    			</view>
+		    		</view>
+		    	</view>
+		    </view>
+			<template v-slot:footer>
+				<navigator hover-class="navigator-hover" url="/pages/article-list/article-list?type=residenceList">
+					<button type="default">查看全部</button>
+				</navigator>
+			</template>
+		</uni-card>
+		
+		<uni-card is-full="false" title="不限购" thumbnail="/static/index/coffee.png" note="tips" is-shadow="true">
+		    <view class="uni-list">
+		    	<view class="uni-list-cell" hover-class="uni-list-cell-hover" v-for="(item,index) in noQuotaList" v-if="index<5" :key="index" @tap="openinfo" :data-newsid="item.post_id">
+		    		<view class="uni-media-list">
+		    			<image class="uni-media-list-logo" :src="item.author_avatar"></image>
+		    			<view class="uni-media-list-body">
+		    				<view class="uni-media-list-text-top">{{item.title}}</view>
+		    				<view class="uni-media-list-text-bottom uni-ellipsis">{{item.created_at}}</view>
+		    			</view>
+		    		</view>
+		    	</view>
+		    </view>
+			<template v-slot:footer>
+				<navigator hover-class="navigator-hover" url="/pages/article-list/article-list?type=noQuotaList">
+					<button type="default">查看全部</button>
+				</navigator>
+			</template>
+		</uni-card>
+		
+		<uni-card is-full="false" title="热门商铺" thumbnail="/static/index/hot.gif" note="tips" is-shadow="true">
+		    <view class="uni-list">
+		    	<view class="uni-list-cell" hover-class="uni-list-cell-hover" v-for="(item,index) in hotShopsList" v-if="index<5" :key="index" @tap="openinfo" :data-newsid="item.post_id">
+		    		<view class="uni-media-list">
+		    			<image class="uni-media-list-logo" :src="item.author_avatar"></image>
+		    			<view class="uni-media-list-body">
+		    				<view class="uni-media-list-text-top">{{item.title}}</view>
+		    				<view class="uni-media-list-text-bottom uni-ellipsis">{{item.created_at}}</view>
+		    			</view>
+		    		</view>
+		    	</view>
+		    </view>
+			<template v-slot:footer>
+				<navigator hover-class="navigator-hover" url="/pages/article-list/article-list?type=hotShopsList">
+					<button type="default">查看全部</button>
+				</navigator>
+			</template>
+		</uni-card>
 	</view>
 </template>
 
@@ -103,7 +111,12 @@
 		components: {uniNavBar},
 		data() {
 			return {
-				searchInputText: ''
+				searchInputText: '',
+				villaList:[],
+				apartmentList:[],
+				residenceList:[],
+				noQuotaList:[],
+				hotShopsList:[]
 			}
 		}, 
 		onLoad() {
@@ -112,16 +125,105 @@
 				mask: true
 			});
 			uni.request({
+				//TODO 替换为别墅精选查询
 				url: 'https://unidemo.dcloud.net.cn/api/news',
 				method: 'GET',
 				data: {},
 				success: res => {
-					console.log(res.data);
-					this.news = res.data;
+					this.villaList = res.data;
 					uni.hideLoading();
 				},
-				fail: () => {},
-				complete: () => {}
+				fail: () => {
+					console.log("获取别墅精选文章列表失败！");
+					uni.showToast({
+						icon: "none", 
+					    title: '获取别墅精选列表失败！',
+					    duration: 2000
+					});
+					uni.hideToast();
+					uni.hideLoading();
+				}
+			});
+			
+			uni.request({
+				//TODO 替换为公寓精选查询
+				url: '',
+				method: 'GET',
+				data: {},
+				success: res => {
+					this.apartmentList = res.data;
+					uni.hideLoading();
+				},
+				fail: () => {
+					console.log("获取公寓精选文章列表失败！");
+					uni.showToast({
+						icon: "none", 
+					    title: '获取公寓精选列表失败！',
+					    duration: 2000
+					});
+					uni.hideToast();
+					uni.hideLoading(); 
+				}
+			});
+			
+			uni.request({
+				//TODO 替换为住宅优选查询
+				url: '',
+				method: 'GET',
+				data: {},
+				success: res => {
+					this.residenceList = res.data;
+					uni.hideLoading();
+				},
+				fail: () => {
+					console.log("获取住宅优选列表失败！");
+					uni.showToast({
+					    icon: "none", 
+						title: '获取住宅优选文章列表失败！',
+					    duration: 2000
+					});
+					uni.hideLoading();
+				}
+			});
+			
+			uni.request({
+				//TODO 替换为住宅不限购查询
+				url: '',
+				method: 'GET',
+				data: {},
+				success: res => {
+					this.noQuotaList = res.data;
+					uni.hideLoading();
+				},
+				fail: () => {
+					console.log("获取住宅不限购列表失败！");
+					uni.showToast({
+					    icon: "none",
+						title: '获取住宅不限购文章列表失败！',
+					    duration: 2000
+					});
+					uni.hideLoading();
+				}
+			});
+			
+			uni.request({
+				//TODO 替换为热门商铺查询
+				url: '',
+				method: 'GET',
+				data: {},
+				success: res => {
+					this.hotShopsList = res.data;
+					uni.hideLoading();
+				},
+				fail: () => {
+					console.log("获取热门商铺列表失败！");
+					uni.showToast({
+					    icon: "none",
+						title: '获取热门商铺文章列表失败！',
+					    duration: 2000
+					});
+					uni.hideLoading();
+				}
 			});
 		},
 		onReachBottom() {
@@ -150,4 +252,10 @@
 		border-radius: 5px;
 		width: 480rpx;
 	}
+	
+	/* 精品别墅card 内部样式*/
+	
+	.uni-media-list-body{height: auto;}
+	.uni-media-list-text-top{line-height: 1.6em;}
+	
 </style>
