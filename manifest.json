@@ -1,7 +1,7 @@
 {
     "name" : "RealEstateAgentsSys",
     "appid" : "__UNI__C735E40",
-    "description" : "",
+    "description" : "房产中介用于增加客户粘性的工具",
     "versionName" : "1.0.0",
     "versionCode" : "100",
     "transformPx" : false,

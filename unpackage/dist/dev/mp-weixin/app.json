@@ -12,7 +12,12 @@
     "navigationBarTextStyle": "white",
     "navigationBarTitleText": "购房助手",
     "navigationBarBackgroundColor": "#444444",
-    "backgroundColor": "#F8F8F8"
+    "backgroundColor": "#F8F8F8",
+    "navigationStyle": "default",
+    "backgroundTextStyle": "dark",
+    "enablePullDownRefresh": true,
+    "onReachBottomDistance": 50,
+    "pageOrientation": "portrait"
   },
   "tabBar": {
     "color": "#7A7E83",
@@ -47,5 +52,7 @@
       }
     ]
   },
-  "usingComponents": {}
+  "usingComponents": {
+    "uni-card": "/components/uni-card/uni-card"
+  }
 }
