@@ -11,7 +11,7 @@
 		
 		<uni-card is-full="false" title="别墅精选" thumbnail="/static/index/house.png" note="tips" is-shadow="true">
 		    <view class="uni-list">
-		    	<view class="uni-list-cell" hover-class="uni-list-cell-hover" v-for="(item,index) in villaList" v-if="index<5" :key="index" @tap="openinfo" :data-newsid="item.post_id">
+		    	<view class="uni-list-cell" hover-class="uni-list-cell-hover" v-for="(item,index) in villaList" v-if="index<5" :key="index" @tap="openinfo" :data-article_id="item.post_id">
 		    		<view class="uni-media-list">
 		    			<image class="uni-media-list-logo" :src="item.author_avatar"></image>
 		    			<view class="uni-media-list-body">
@@ -30,7 +30,7 @@
 		
 		<uni-card is-full="false" title="精品公寓" thumbnail="/static/index/apartmanlife.png" note="tips" is-shadow="true">
 		    <view class="uni-list">
-		    	<view class="uni-list-cell" hover-class="uni-list-cell-hover" v-for="(item,index) in apartmentList" v-if="index<5" :key="index" @tap="openinfo" :data-newsid="item.post_id">
+		    	<view class="uni-list-cell" hover-class="uni-list-cell-hover" v-for="(item,index) in apartmentList" v-if="index<5" :key="index" @tap="openinfo" :data-article_id="item.post_id">
 		    		<view class="uni-media-list">
 		    			<image class="uni-media-list-logo" :src="item.author_avatar"></image>
 		    			<view class="uni-media-list-body">
@@ -48,7 +48,7 @@
 		</uni-card>
 		<uni-card is-full="false" title="优选住宅" thumbnail="/static/index/park.png" note="tips" is-shadow="true">
 		    <view class="uni-list">
-		    	<view class="uni-list-cell" hover-class="uni-list-cell-hover" v-for="(item,index) in residenceList" v-if="index<5" :key="index" @tap="openinfo" :data-newsid="item.post_id">
+		    	<view class="uni-list-cell" hover-class="uni-list-cell-hover" v-for="(item,index) in residenceList" v-if="index<5" :key="index" @tap="openinfo" :data-article_id="item.post_id">
 		    		<view class="uni-media-list">
 		    			<image class="uni-media-list-logo" :src="item.author_avatar"></image>
 		    			<view class="uni-media-list-body">
@@ -67,7 +67,7 @@
 		
 		<uni-card is-full="false" title="不限购" thumbnail="/static/index/coffee.png" note="tips" is-shadow="true">
 		    <view class="uni-list">
-		    	<view class="uni-list-cell" hover-class="uni-list-cell-hover" v-for="(item,index) in noQuotaList" v-if="index<5" :key="index" @tap="openinfo" :data-newsid="item.post_id">
+		    	<view class="uni-list-cell" hover-class="uni-list-cell-hover" v-for="(item,index) in noQuotaList" v-if="index<5" :key="index" @tap="openinfo" :data-article_id="item.post_id">
 		    		<view class="uni-media-list">
 		    			<image class="uni-media-list-logo" :src="item.author_avatar"></image>
 		    			<view class="uni-media-list-body">
@@ -86,7 +86,7 @@
 		
 		<uni-card is-full="false" title="热门商铺" thumbnail="/static/index/hot.gif" note="tips" is-shadow="true">
 		    <view class="uni-list">
-		    	<view class="uni-list-cell" hover-class="uni-list-cell-hover" v-for="(item,index) in hotShopsList" v-if="index<5" :key="index" @tap="openinfo" :data-newsid="item.post_id">
+		    	<view class="uni-list-cell" hover-class="uni-list-cell-hover" v-for="(item,index) in hotShopsList" v-if="index<5" :key="index" @tap="openinfo" :data-article_id="item.post_id">
 		    		<view class="uni-media-list">
 		    			<image class="uni-media-list-logo" :src="item.author_avatar"></image>
 		    			<view class="uni-media-list-body">
@@ -240,6 +240,12 @@
 			openlist(e){
 				uni.navigateTo({
 					url: '../article-list/article-list',
+				});
+			},
+			openinfo(e){
+				var article_id = e.currentTarget.dataset.article_id;
+				uni.navigateTo({
+					url: '/pages/article-info/article-info?article_id='+article_id,
 				});
 			}
 		}

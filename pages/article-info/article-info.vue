@@ -16,16 +16,30 @@
 			}
 		},
 		onLoad:function(e){
+			uni.showLoading({
+				title: '加载中...',
+				mask: true
+			});
 			uni.request({
-				url: 'https://unidemo.dcloud.net.cn/api/news/36kr/'+e.newsid,
+				url: 'https://unidemo.dcloud.net.cn/api/news/36kr/'+e.article_id,
 				method: 'GET',
 				data: {},
 				success: res => {
 					console.log(res.data);
 					this.title = res.data.title;
 					this.strings = res.data.content;
+					uni.hideLoading();
 				},
-				fail: () => {},
+				fail: () => {
+					console.log("获取文章详情失败！");
+					uni.showToast({
+					    icon: "none", 
+						title: '获取文章详情失败！',
+					    duration: 2000
+					});
+					uni.hideToast();
+					uni.hideLoading();
+				},
 				complete: () => {}
 			});
 		},
