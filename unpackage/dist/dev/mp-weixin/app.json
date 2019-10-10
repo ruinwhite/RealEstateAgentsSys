@@ -53,6 +53,7 @@
     ]
   },
   "usingComponents": {
-    "uni-card": "/components/uni-card/uni-card"
+    "uni-card": "/components/uni-card/uni-card",
+    "uni-icons": "/components/uni-icon/uni-icon"
   }
 }

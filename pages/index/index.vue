@@ -140,7 +140,6 @@
 					    title: '获取别墅精选列表失败！',
 					    duration: 2000
 					});
-					uni.hideToast();
 					uni.hideLoading();
 				}
 			});
@@ -161,7 +160,6 @@
 					    title: '获取公寓精选列表失败！',
 					    duration: 2000
 					});
-					uni.hideToast();
 					uni.hideLoading(); 
 				}
 			});

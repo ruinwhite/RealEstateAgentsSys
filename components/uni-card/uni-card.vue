@@ -97,12 +97,12 @@
 
 	.uni-card__thumbnailimage {
 		position: relative;
-		height: 300upx
+		height: 300upx;
 	}
 
 	.uni-card__thumbnailimage image {
 		width: 100%;
-		height: 100%
+		height: 100%;
 	}
 
 	.uni-card__thumbnailimage-title {
