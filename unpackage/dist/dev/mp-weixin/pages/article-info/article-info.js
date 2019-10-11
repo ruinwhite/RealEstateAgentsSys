@@ -135,13 +135,41 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default =
 {
   data: function data() {
     return {
-      title: '',
-      createAt: '',
-      strings: '',
+      articleId: -1,
+      authorAvatar: "",
+      title: '', //文章标题
+      summary: '',
+      createAt: '', //文章创建时间
+      strings: '', //文章内容
+      starCount: 0,
+      redoCount: 0,
+      readCount: 0,
+      readString: "人浏览",
+      chatContent: "",
+      isStar: false,
       icons: {
         star: "star",
         starColor: "#ddd",
@@ -154,10 +182,13 @@ var _default =
       { nickName: "张三",
         chatContent: "差评~",
         createAt: "2019-10-10 19:01:29",
+        userHeadUrl: "/static/article-info/anonymous01.png",
+        agreeCount: 101,
         thumbsUpCount: "10" },
       { nickName: "张三",
         chatContent: "差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~",
         createAt: "2019-10-10 19:01:29",
+        agreeCount: 101,
         thumbsUpCount: "10" },
       { nickName: "张三",
         chatContent: "差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~",
@@ -197,10 +228,22 @@ var _default =
       data: {},
       success: function success(res) {
         console.log(res.data);
+        _this.articleId = res.data.id;
+        _this.authorAvatar = res.data.author_avatar;
         _this.title = res.data.title;
         _this.strings = res.data.content;
-        _this.createAt = res.data.created_at;
-        _this.createAt = _this.createAt.substr(5);
+        _this.createAt = res.data.created_at.substr(5);
+        _this.readCount = 123;
+        _this.summary = res.data.summary;
+        _this.readString = _this.readCount + _this.readString;
+        // this.isStar = ...;
+        // this.redoCount = ...;
+        // this.chatList = ...;
+        // this.starList = ...;
+        if (_this.isStar) {
+          _this.icons.star = "star-filled";
+          _this.icons.starColor = "#FF0000";
+        }
         uni.hideLoading();
       },
       fail: function fail() {
@@ -213,6 +256,28 @@ var _default =
         uni.hideLoading();
       },
       complete: function complete() {} });
+
+  },
+  onShareAppMessage: function onShareAppMessage(res) {
+
+    return {
+      title: this.title,
+      path: '/pages/article-info/article-info?article_id=' + this.articleId,
+      imageUrl: this.authorAvatar,
+      success: function success() {
+        uni.showToast({
+          icon: "none",
+          title: '分享成功！',
+          duration: 2000 });
+
+      },
+      fail: function fail() {
+        uni.showToast({
+          icon: "none",
+          title: '分享失败！',
+          duration: 2000 });
+
+      } };
 
   },
   methods: {
@@ -270,15 +335,70 @@ var _default =
       }
     },
     redoClick: function redoClick() {
-      uni.showToast({
-        icon: "none",
-        title: '分享',
-        duration: 2000 });
 
     },
-    chatClick: function chatClick() {
+    chatConfirm: function chatConfirm(e) {var _this3 = this;
+      console.log(e.detail.value);
+      if (e.detail.value == "") {
+        uni.showToast({
+          icon: "none",
+          title: '评论内容不能为空~',
+          duration: 2000 });
 
-    } } };exports.default = _default;
+        return;
+      }
+      uni.request({
+        //TODO 替换为评论请求
+        url: 'http://www.baidu.com',
+        method: 'GET',
+        data: {},
+        success: function success(res) {
+          uni.showToast({
+            icon: "none",
+            title: '评论成功',
+            duration: 2000 });
+
+          //TODO将最新的评论添加到列表中
+          _this3.chatContent = "";
+        },
+        fail: function fail() {
+          uni.showToast({
+            icon: "none",
+            title: '评论失败！',
+            duration: 2000 });
+
+        } });
+
+    }
+    // chatClick : function(){
+    // 	uni.request({
+    // 		//TODO 替换为评论请求
+    // 		url: 'http://www.baidu.com?type=unstar',
+    // 		method: 'GET',
+    // 		data: {
+    // 			userid: 1,
+    // 			chatContent: 
+    // 		},
+    // 		success: res => {
+    // 			this.icons.star = "star";
+    // 			this.icons.starColor = "#ddd"
+    // 			uni.showToast({
+    // 				icon: "none",
+    // 				title: '评论成功',
+    // 				duration: 2000
+    // 			});
+    // 		},
+    // 		fail: () => {
+    // 			console.log("评论失败！");
+    // 			uni.showToast({
+    // 			    icon: "none", 
+    // 				title: '评论失败！',
+    // 			    duration: 2000
+    // 			});
+    // 		}
+    // 	});
+    // }
+  } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

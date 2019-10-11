@@ -54,6 +54,10 @@
   },
   "usingComponents": {
     "uni-card": "/components/uni-card/uni-card",
-    "uni-icons": "/components/uni-icon/uni-icon"
+    "uni-icons": "/components/uni-icon/uni-icon",
+    "uni-badge": "/components/uni-badge/uni-badge",
+    "uni-list": "/components/uni-list/uni-list",
+    "uni-list-item": "/components/uni-list-item/uni-list-item",
+    "uni-list-item-custom": "/components/uni-list-item-custom/uni-list-item-custom"
   }
 }
