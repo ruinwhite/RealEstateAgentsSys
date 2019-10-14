@@ -26,20 +26,20 @@
 				</view>
 			    <template v-slot:footer>
 			        <view class="footer-box">
-					<view class="ai-card-foot-wrapper">
-						<input class="ai-card-foot-input" type="text" maxlength="100" :value="chatContent" placeholder="评论只能输入100个字哦~" confirm-type="send" @confirm="chatConfirm"/> 
-					</view>
-					<view v-if="chatList.length == 0">现在还没有评论，快来评论哦~</view>
-					<view class="ai-card-foot-chatlist" v-if="chatList.length > 0">
-						<uni-list v-for="(item,index) in chatList" :key="index">
-						    <uni-list-item-custom 
-							:title="item.nickName"
-							:note="item.chatContent" 
-							:thumb="item.userHeadUrl" 
-							show-extra-icon="true">
-							</uni-list-item-custom>
-						</uni-list>
-					</view>
+						<view class="ai-card-foot-wrapper">
+							<input class="ai-card-foot-input" type="text" maxlength="100" :value="chatContent" placeholder="评论只能输入100个字哦~" confirm-type="send" @confirm="chatConfirm"/> 
+						</view>
+						<view v-if="chatList.length == 0">现在还没有评论，快来评论哦~</view>
+						<view class="ai-card-foot-chatlist" v-if="chatList.length > 0">
+							<uni-list v-for="(item,index) in chatList" :key="index">
+								<uni-list-item-custom 
+								:title="item.nickName"
+								:note="item.chatContent" 
+								:thumb="item.userHeadUrl" 
+								show-extra-icon="true">
+								</uni-list-item-custom>
+							</uni-list>
+						</view>
 			        </view>
 			    </template>
 			</uni-card>
@@ -115,13 +115,53 @@
 				title: '加载中...',
 				mask: true
 			});
+			this.articleId = e.article_id;
 			uni.request({
-				url: 'https://unidemo.dcloud.net.cn/api/news/36kr/'+e.article_id,
+				url: 'https://unidemo.dcloud.net.cn/api/news/36kr/'+this.articleId,
 				method: 'GET',
 				data: {},
 				success: res => {
 					console.log(res.data);
-					this.articleId = res.data.id;
+					this.authorAvatar = res.data.author_avatar;
+					this.title = res.data.title;
+					this.strings = res.data.content;
+					this.createAt = res.data.created_at.substr(5);
+					this.readCount = 123;
+					this.summary = res.data.summary;
+					this.readString = this.readCount + this.readString;
+					// this.isStar = ...;
+					// this.redoCount = ...;
+					// this.chatList = ...;
+					// this.starList = ...;
+					if(this.isStar){
+						this.icons.star = "star-filled";
+						this.icons.starColor = "#FF0000"
+					}
+					uni.hideLoading();
+				},
+				fail: () => {
+					console.log("获取文章详情失败！");
+					uni.showToast({
+					    icon: "none", 
+						title: '获取文章详情失败！',
+					    duration: 2000
+					});
+					uni.hideLoading();
+				},
+				complete: () => {}
+			});
+		},
+		onPullDownRefresh(){
+			uni.showLoading({
+				title: '加载中...',
+				mask: true
+			});
+			uni.request({
+				url: 'https://unidemo.dcloud.net.cn/api/news/36kr/'+this.articleId,
+				method: 'GET',
+				data: {},
+				success: res => {
+					console.log(res.data);
 					this.authorAvatar = res.data.author_avatar;
 					this.title = res.data.title;
 					this.strings = res.data.content;
@@ -152,7 +192,6 @@
 			});
 		},
 		onShareAppMessage(res){
-			
 			return {
 				title: this.title,
 				path: '/pages/article-info/article-info?article_id='+this.articleId,
@@ -185,6 +224,7 @@
 						success: res => {
 							this.icons.star = "star-filled";
 							this.icons.starColor = "#FF0000"
+							this.starCount = this.starCount++
 							uni.showToast({
 								icon: "none",
 								title: '收藏成功',
@@ -210,6 +250,7 @@
 						success: res => {
 							this.icons.star = "star";
 							this.icons.starColor = "#ddd"
+							this.starCount = this.starCount--
 							uni.showToast({
 								icon: "none",
 								title: '取消收藏成功',
@@ -231,7 +272,6 @@
 				
 			},
 			chatConfirm : function(e){
-				console.log(e.detail.value);
 				if(e.detail.value == ""){
 					uni.showToast({
 						icon: "none",
@@ -251,8 +291,14 @@
 							title: '评论成功',
 							duration: 2000
 						});
+						this.chatList.push({nickName:"狗蛋",
+							chatContent: e.detail.value,
+							createAt:"2019-10-10 19:01:29",
+							userHeadUrl: "/static/article-info/anonymous01.png"}
+						);
 						//TODO将最新的评论添加到列表中
 						this.chatContent = "";
+						uni.startPullDownRefresh();
 					},
 					fail: () => {
 						uni.showToast({
