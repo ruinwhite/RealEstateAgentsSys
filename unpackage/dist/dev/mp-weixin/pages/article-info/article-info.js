@@ -182,38 +182,28 @@ var _default =
       { nickName: "张三",
         chatContent: "差评~",
         createAt: "2019-10-10 19:01:29",
-        userHeadUrl: "/static/article-info/anonymous01.png",
-        agreeCount: 101,
-        thumbsUpCount: "10" },
+        userHeadUrl: "/static/article-info/anonymous01.png" },
       { nickName: "张三",
-        chatContent: "差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~",
-        createAt: "2019-10-10 19:01:29",
-        agreeCount: 101,
-        thumbsUpCount: "10" },
+        chatContent: "差评1~",
+        createAt: "2019-10-10 19:01:29" },
       { nickName: "张三",
-        chatContent: "差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~",
-        createAt: "2019-10-10 19:01:29",
-        thumbsUpCount: "10" },
+        chatContent: "差评2~",
+        createAt: "2019-10-10 19:01:29" },
       { nickName: "张三",
-        chatContent: "差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~",
-        createAt: "2019-10-10 19:01:29",
-        thumbsUpCount: "10" },
+        chatContent: "差评3~",
+        createAt: "2019-10-10 19:01:29" },
       { nickName: "张三",
-        chatContent: "差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~",
-        createAt: "2019-10-10 19:01:29",
-        thumbsUpCount: "10" },
+        chatContent: "差评4~",
+        createAt: "2019-10-10 19:01:29" },
       { nickName: "张三",
-        chatContent: "差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~",
-        createAt: "2019-10-10 19:01:29",
-        thumbsUpCount: "10" },
+        chatContent: "差评5~",
+        createAt: "2019-10-10 19:01:29" },
       { nickName: "张三",
-        chatContent: "差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~",
-        createAt: "2019-10-10 19:01:29",
-        thumbsUpCount: "10" },
+        chatContent: "差评6~",
+        createAt: "2019-10-10 19:01:29" },
       { nickName: "张三",
-        chatContent: "差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~",
-        createAt: "2019-10-10 19:01:29",
-        thumbsUpCount: "10" }] };
+        chatContent: "差评7~",
+        createAt: "2019-10-10 19:01:29" }] };
 
 
   },
@@ -299,21 +289,24 @@ var _default =
 
   },
   onShareAppMessage: function onShareAppMessage(res) {
+    //TODO 分享次数无效
     return {
       title: this.title,
       path: '/pages/article-info/article-info?article_id=' + this.articleId,
       imageUrl: this.authorAvatar,
       success: function success() {
+        this.redoCount = ++this.redoCount;
+        console.log(this.redoCount);
         uni.showToast({
           icon: "none",
-          title: '分享成功！',
+          title: '欢迎阅读！',
           duration: 2000 });
 
       },
       fail: function fail() {
         uni.showToast({
           icon: "none",
-          title: '分享失败！',
+          title: '内容获取失败！',
           duration: 2000 });
 
       } };
@@ -331,7 +324,8 @@ var _default =
           success: function success(res) {
             _this3.icons.star = "star-filled";
             _this3.icons.starColor = "#FF0000";
-            _this3.starCount = _this3.starCount++;
+            _this3.starCount = ++_this3.starCount;
+            console.log(_this3.starCount);
             uni.showToast({
               icon: "none",
               title: '收藏成功',
@@ -357,7 +351,7 @@ var _default =
           success: function success(res) {
             _this3.icons.star = "star";
             _this3.icons.starColor = "#ddd";
-            _this3.starCount = _this3.starCount--;
+            _this3.starCount = --_this3.starCount;
             uni.showToast({
               icon: "none",
               title: '取消收藏成功',
@@ -398,14 +392,13 @@ var _default =
             title: '评论成功',
             duration: 2000 });
 
-          _this4.chatList.push({ nickName: "狗蛋",
-            chatContent: e.detail.value,
-            createAt: "2019-10-10 19:01:29",
-            userHeadUrl: "/static/article-info/anonymous01.png" });
+          _this4.chatList.push({
+            nickName: "狗蛋",
+            chatContent: _this4.chatContent,
+            createAt: "2019-10-10 19:01:29" });
 
-          //TODO将最新的评论添加到列表中
+
           _this4.chatContent = "";
-          uni.startPullDownRefresh();
         },
         fail: function fail() {
           uni.showToast({

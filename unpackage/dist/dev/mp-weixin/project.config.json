@@ -9,7 +9,7 @@
 		"postcss": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.7.0",
+	"libVersion": "2.8.3",
 	"appid": "wx3c06081785831e94",
 	"projectname": "RealEstateAgentsSys",
 	"simulatorType": "wechat",

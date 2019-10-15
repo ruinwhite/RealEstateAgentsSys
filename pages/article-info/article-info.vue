@@ -15,25 +15,25 @@
 					<view class="ai-card-note-count-right">
 						<view>
 							<label class="ai-card-foot-label">已收藏</label>
-							<uni-badge text="2333" type="primary"></uni-badge>
+							<uni-badge :text="starCount" type="primary"></uni-badge>
 						</view>
 						<view class="ai-cart-note-empty"></view>
 						<view>
 							<label class="ai-card-foot-label">已分享</label>
-							<uni-badge text="2" type="success"></uni-badge>
+							<uni-badge :text="redoCount" type="success"></uni-badge>
 						</view>
 					</view>
 				</view>
 			    <template v-slot:footer>
 			        <view class="footer-box">
 						<view class="ai-card-foot-wrapper">
-							<input class="ai-card-foot-input" type="text" maxlength="100" :value="chatContent" placeholder="评论只能输入100个字哦~" confirm-type="send" @confirm="chatConfirm"/> 
+							<input class="ai-card-foot-input" type="text" maxlength="100" v-model="chatContent" placeholder="评论只能输入100个字哦~" confirm-type="send" @confirm="chatConfirm"/> 
 						</view>
 						<view v-if="chatList.length == 0">现在还没有评论，快来评论哦~</view>
 						<view class="ai-card-foot-chatlist" v-if="chatList.length > 0">
-							<uni-list v-for="(item,index) in chatList" :key="index">
+							<uni-list v-model="chatList" v-for="(item,index) in chatList" :key="index">
 								<uni-list-item-custom 
-								:title="item.nickName"
+								:title='item.nickName+" 发表于 "+item.createAt'
 								:note="item.chatContent" 
 								:thumb="item.userHeadUrl" 
 								show-extra-icon="true">
@@ -75,38 +75,28 @@
 					{nickName:"张三",
 					chatContent:"差评~",
 					createAt:"2019-10-10 19:01:29",
-					userHeadUrl: "/static/article-info/anonymous01.png",
-					agreeCount: 101,
-					thumbsUpCount: "10"},
+					userHeadUrl: "/static/article-info/anonymous01.png"},
 					{nickName:"张三",
-					chatContent:"差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~",
-					createAt:"2019-10-10 19:01:29",
-					agreeCount: 101,
-					thumbsUpCount: "10"},
+					chatContent:"差评1~",
+					createAt:"2019-10-10 19:01:29"},
 					{nickName:"张三",
-					chatContent:"差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~",
-					createAt:"2019-10-10 19:01:29",
-					thumbsUpCount: "10"},
+					chatContent:"差评2~",
+					createAt:"2019-10-10 19:01:29"},
 					{nickName:"张三",
-					chatContent:"差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~",
-					createAt:"2019-10-10 19:01:29",
-					thumbsUpCount: "10"},
+					chatContent:"差评3~",
+					createAt:"2019-10-10 19:01:29"},
 					{nickName:"张三",
-					chatContent:"差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~",
-					createAt:"2019-10-10 19:01:29",
-					thumbsUpCount: "10"},
+					chatContent:"差评4~",
+					createAt:"2019-10-10 19:01:29"},
 					{nickName:"张三",
-					chatContent:"差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~",
-					createAt:"2019-10-10 19:01:29",
-					thumbsUpCount: "10"},
+					chatContent:"差评5~",
+					createAt:"2019-10-10 19:01:29"},
 					{nickName:"张三",
-					chatContent:"差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~",
-					createAt:"2019-10-10 19:01:29",
-					thumbsUpCount: "10"},
+					chatContent:"差评6~",
+					createAt:"2019-10-10 19:01:29"},
 					{nickName:"张三",
-					chatContent:"差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~差评~",
-					createAt:"2019-10-10 19:01:29",
-					thumbsUpCount: "10"}
+					chatContent:"差评7~",
+					createAt:"2019-10-10 19:01:29"}
 					]
 			}
 		},
@@ -192,21 +182,24 @@
 			});
 		},
 		onShareAppMessage(res){
+			//TODO 分享次数无效
 			return {
 				title: this.title,
 				path: '/pages/article-info/article-info?article_id='+this.articleId,
 				imageUrl: this.authorAvatar,
 				success: function(){
+					this.redoCount = ++this.redoCount;
+					console.log(this.redoCount);
 					uni.showToast({
 					    icon: "none", 
-						title: '分享成功！',
+						title: '欢迎阅读！',
 					    duration: 2000
 					});
 				},
 				fail: function(){
 					uni.showToast({
 					    icon: "none", 
-						title: '分享失败！',
+						title: '内容获取失败！',
 					    duration: 2000
 					});
 				}
@@ -224,7 +217,8 @@
 						success: res => {
 							this.icons.star = "star-filled";
 							this.icons.starColor = "#FF0000"
-							this.starCount = this.starCount++
+							this.starCount = ++this.starCount
+							console.log(this.starCount);
 							uni.showToast({
 								icon: "none",
 								title: '收藏成功',
@@ -250,7 +244,7 @@
 						success: res => {
 							this.icons.star = "star";
 							this.icons.starColor = "#ddd"
-							this.starCount = this.starCount--
+							this.starCount = --this.starCount
 							uni.showToast({
 								icon: "none",
 								title: '取消收藏成功',
@@ -291,14 +285,13 @@
 							title: '评论成功',
 							duration: 2000
 						});
-						this.chatList.push({nickName:"狗蛋",
-							chatContent: e.detail.value,
-							createAt:"2019-10-10 19:01:29",
-							userHeadUrl: "/static/article-info/anonymous01.png"}
-						);
-						//TODO将最新的评论添加到列表中
+						this.chatList.push({
+							nickName:"狗蛋",
+							chatContent: this.chatContent,
+							createAt:"2019-10-10 19:01:29"
+						})
+						 
 						this.chatContent = "";
-						uni.startPullDownRefresh();
 					},
 					fail: () => {
 						uni.showToast({

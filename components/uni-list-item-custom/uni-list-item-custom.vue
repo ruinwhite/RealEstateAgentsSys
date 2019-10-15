@@ -157,7 +157,7 @@
 	}
 
 	.uni-list-item__content-title {
-		font-size: 32upx;
+		font-size: 28upx;
 		text-overflow: ellipsis;
 		white-space: nowrap;
 		color: inherit;
