@@ -6,6 +6,7 @@ import uniBadge from "@/components/uni-badge/uni-badge.vue"
 import uniList from "@/components/uni-list/uni-list"
 import uniListItem from "@/components/uni-list-item/uni-list-item"
 import uniListItemCustom from "@/components/uni-list-item-custom/uni-list-item-custom"
+import uniNoticeBar from "@/components/uni-notice-bar/uni-notice-bar"
 
 Vue.config.productionTip = false
 Vue.component('uni-card',uniCard)
@@ -14,6 +15,7 @@ Vue.component('uni-badge',uniBadge)
 Vue.component('uni-list',uniList)
 Vue.component('uni-list-item',uniListItem)
 Vue.component('uni-list-item-custom',uniListItemCustom)
+Vue.component('uni-notice-bar',uniNoticeBar)
 
 App.mpType = 'app'
 

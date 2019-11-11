@@ -1,14 +1,17 @@
 <template>
 	<view class="content">
-		<uni-nav-bar>
+		<uni-notice-bar :class="isHide" show-icon="true" show-close="true" scrollable="true" single="true" :text="noticeContent"></uni-notice-bar>
+		<!-- <uni-nav-bar>
 			<view>
 				<input class="searchInput" type="text" confirm-type="search" v-model="searchInputText" placeholder="找新房 找别墅 找商铺 找二手房" />
 			</view>
 			<view slot="right">
 				<view @tap="checkin">签到</view>
 			</view>
-		</uni-nav-bar>
-		
+		</uni-nav-bar> -->
+		<view class="video-box">
+			<video :src="videoUrl" objectFit="contain"></video>
+		</view>
 		<uni-card is-full="false" title="别墅精选" thumbnail="/static/index/house.png" note="tips" is-shadow="true">
 		    <view class="uni-list">
 		    	<view class="uni-list-cell" hover-class="uni-list-cell-hover" v-for="(item,index) in villaList" v-if="index<5" :key="index" @tap="openinfo" :data-article_id="item.post_id">
@@ -111,6 +114,9 @@
 		components: {uniNavBar},
 		data() {
 			return {
+				noticeContent: "[单行] 这是 NoticeBar 通告栏，这是 NoticeBar 通告栏，这是 NoticeBar 通告栏",
+				isHide: "hide",
+				videoUrl: "",
 				searchInputText: '',
 				villaList:[],
 				apartmentList:[],
@@ -124,6 +130,29 @@
 				title: '加载中...',
 				mask: true
 			});
+			
+			uni.request({
+				//TODO 替换为获取通告和视频地址
+				url: 'https://unidemo.dcloud.net.cn/api/news',
+				method: 'GET',
+				data: {},
+				success: res => {
+					this.noticeContent = res.data[0].title;
+					// this.isHide="show";
+					this.videoUrl = "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"; 
+					uni.hideLoading();
+				},
+				fail: () => {
+					console.log("获取别墅精选文章列表失败！");
+					uni.showToast({
+						icon: "none", 
+					    title: '获取别墅精选列表失败！',
+					    duration: 2000
+					});
+					uni.hideLoading();
+				}
+			});
+			
 			uni.request({
 				//TODO 替换为别墅精选查询
 				url: 'https://unidemo.dcloud.net.cn/api/news',
@@ -257,9 +286,22 @@
 		width: 480rpx;
 	}
 	
+	/* 视频样式 */
+	.video-box{
+		width: 100%;
+		padding: 5px 0;
+		display: flex;
+		justify-content: center;
+		align-content: center;
+	}
+	
 	/* 精品别墅card 内部样式*/
 	
 	.uni-media-list-body{height: auto;}
 	.uni-media-list-text-top{line-height: 1.6em;}
+	
+	/* 公共样式 */
+	.hide{ display: none; }
+	.show{ display: block;}
 	
 </style>
