@@ -59,6 +59,5 @@
     "uni-list": "/components/uni-list/uni-list",
     "uni-list-item": "/components/uni-list-item/uni-list-item",
     "uni-list-item-custom": "/components/uni-list-item-custom/uni-list-item-custom"
-  },
-  "sitemapLocation": "sitemap21.json"
+  }
 }

@@ -75,7 +75,7 @@
 					{nickName:"张三",
 					chatContent:"差评~",
 					createAt:"2019-10-10 19:01:29",
-					userHeadUrl: "/static/article-info/anonymous01.png"},
+					userHeadUrl: "/static/user-info/anonymous01.png"},
 					{nickName:"张三",
 					chatContent:"差评1~",
 					createAt:"2019-10-10 19:01:29"},
