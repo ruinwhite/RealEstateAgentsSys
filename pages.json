@@ -36,6 +36,18 @@
             	"navigationBarTitleText": "文章列表"
             }
         }
+        ,{
+            "path" : "pages/book/new-books/new-books",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/book/old-books/old-books",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/article-edit/article-edit",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",

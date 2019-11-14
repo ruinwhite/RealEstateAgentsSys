@@ -138,7 +138,7 @@
 				data: {},
 				success: res => {
 					this.noticeContent = res.data[0].title;
-					// this.isHide="show";
+					// this.isHide="show"; 
 					this.videoUrl = "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"; 
 					uni.hideLoading();
 				},
@@ -293,6 +293,7 @@
 		display: flex;
 		justify-content: center;
 		align-content: center;
+		background: #000;
 	}
 	
 	/* 精品别墅card 内部样式*/
