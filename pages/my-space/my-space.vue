@@ -2,7 +2,8 @@
 	<view class="container">
 	  <view class="userinfo">
 	    <image class="userinfo-avatar" :src="userInfo.avatarUrl" background-size="cover"></image>
-	    <text class="userinfo-nickname" :data-nickname="userInfo.nickName" @tap="login">{{userInfo.nickName}}</text>
+		<button v-if="userInfo.nickName == ''" class="xs cu-btn bg-red shadow" @tap="showModal" data-target="bottomModal">登陆</button>
+	    <text v-if="userInfo.nickName != ''" class="userinfo-nickname  bg-gradual-orange radius text-center shadow-blur" :data-nickname="userInfo.nickName">{{userInfo.nickName}}</text>
 	  </view>
 	 
 	  <view class="cu-list menu card-menu margin-top margin-bottom">
@@ -66,7 +67,7 @@
 			</navigator>
 		</view>
 		<view class="cu-item arrow">
-			<navigator class="content" hover-class="none" url="../article-edit/article-edit?type=1">
+			<navigator class="content" hover-class="none" url="../login/login">
 				<text class="cuIcon-read text-blue"></text>
 				<text class="text-grey">我的浏览</text>
 			</navigator>
@@ -85,7 +86,19 @@
 				<text class="text-grey">开发团队</text>
 			</button>
 		</view>
-	  	
+	  </view>
+	  <view class="cu-modal bottom-modal" :class="modalName=='bottomModal'?'show':''">
+	  	<view class="cu-dialog">
+	  		<view class="cu-bar bg-white">
+				<navigator class="action text-green" hover-class="none" url="../login/login">
+					<text>登陆</text>
+				</navigator>
+	  			<view class="action text-blue" @tap="hideModal">取消</view> 
+	  		</view>
+	  		<view class="padding-xl">
+	  			Modal 内容。
+	  		</view>
+	  	</view>
 	  </view>
 	</view>
 </template>
@@ -95,9 +108,10 @@
 		data() {
 			return {
 				isAdmin: true,
+				modalName: "",
 				userInfo: {
 					avatarUrl: "/static/user-info/anonymous01.png",
-					nickName: "未登录"
+					nickName: ""
 				}
 			}
 		},
@@ -112,22 +126,17 @@
 			// })
 		},
 		methods:{
+			showModal(e) {
+				this.modalName = e.currentTarget.dataset.target
+			},
+			hideModal(e) {
+				this.modalName = null
+			},
 			//事件处理函数
 			login: function(e){
-				console.log(e);
-				if(e.currentTarget.dataset.nickname == "未登录"){
-					uni.showToast({
-						title: '未登陆'
-					});
-					// wx.navigateTo({
-					// 	url: '../login/login'
-					// })
-				}else{
-					uni.showToast({
-						title: '已登陆'
-					});
-				}
-				
+				wx.navigateTo({
+					url: '../login/login' 
+				})
 			},
 			videoUpload: function(){
 				uni.showModal({
@@ -185,6 +194,8 @@
 	}
 	.userinfo-nickname {
 	  color: #fff;
+	  padding: 2px 5px;
+	  font-weight: 600;
 	}
 	
 	/** 使用ColorUI示例改造所需的CSS **/
