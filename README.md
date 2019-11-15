@@ -1,2 +1,3 @@
 # RealEstateAgentsSys
-一个简单的中介买房的H5+mp的前端工程
+买房中介小程序前端代码
+后续根据需求增加h5、app兼容行代码
